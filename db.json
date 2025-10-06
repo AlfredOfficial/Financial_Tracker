@@ -1,0 +1,28 @@
+{
+  "users": [
+    {
+      "id": "730c",
+      "username": "rina",
+      "password": "rina12"
+    }
+  ],
+  "transactions": [
+    {
+      "id": "9012",
+      "desc": "daog sa scater",
+      "amount": 5000,
+      "type": "income",
+      "category": "other",
+      "userId": "730c",
+      "date": "2025-10-06T13:47:11.530Z"
+    }
+  ],
+  "budgets": [
+    {
+      "id": "81b4",
+      "userId": "730c",
+      "category": "food",
+      "limit": 1000
+    }
+  ]
+}
