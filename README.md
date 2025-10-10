@@ -40,7 +40,7 @@ Follow these steps to set up and run the project locally.
 
 ```bash
 # Clone the repository
-git clone <YOUR_REPO_URL>
+git clone https://github.com/AlfredOfficial/Financial_Tracker.git
 cd financial-tracker-pro
 
 # Install dependencies
