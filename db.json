@@ -4,6 +4,11 @@
       "id": "730c",
       "username": "rina",
       "password": "rina12"
+    },
+    {
+      "id": "571a",
+      "username": "alfred12",
+      "password": "09876"
     }
   ],
   "transactions": [
@@ -15,11 +20,20 @@
       "category": "other",
       "userId": "730c",
       "date": "2025-10-06T13:47:11.530Z"
+    },
+    {
+      "id": "d02a",
+      "desc": "bugas",
+      "amount": 800,
+      "type": "expense",
+      "category": "food",
+      "userId": "730c",
+      "date": "2025-10-10T12:34:59.795Z"
     }
   ],
   "budgets": [
     {
-      "id": "81b4",
+      "id": "94ec",
       "userId": "730c",
       "category": "food",
       "limit": 1000

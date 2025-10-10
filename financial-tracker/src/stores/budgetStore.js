@@ -60,6 +60,16 @@ export const useBudgetStore = defineStore('budget', {
       const total = state.totalBudget
       const used = state.usedBudget
       return total > 0 ? ((used / total) * 100).toFixed(1) : 0
+    },
+
+    remainingBudget: (state) => {
+      const remaining = state.totalBudget - state.usedBudget
+      return Math.max(0, remaining)
+    },
+
+    overspentBudget: (state) => {
+      const overspent = state.usedBudget - state.totalBudget
+      return Math.max(0, overspent)
     }
   }
 })
