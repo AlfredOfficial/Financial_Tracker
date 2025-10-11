@@ -31,6 +31,9 @@ const spent = (cat) => {
 }
 
 const progressWidth = (cat, limit) => {
+  if (!limit || limit <= 0) {
+    return 0
+  }
   const total = spent(cat)
   const pct = (total / limit) * 100
   return pct > 100 ? 100 : pct
@@ -46,6 +49,7 @@ const handleEditSave = async (updatedBudget) => {
   showEditModal.value = false
   selectedBudget.value = null
 }
+
 </script>
 
 <template>
