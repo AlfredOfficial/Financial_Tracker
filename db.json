@@ -29,6 +29,15 @@
       "category": "food",
       "userId": "730c",
       "date": "2025-10-10T12:34:59.795Z"
+    },
+    {
+      "id": "fa14",
+      "desc": "one week transportation ",
+      "amount": 100,
+      "type": "expense",
+      "category": "transport",
+      "userId": "730c",
+      "date": "2025-10-12T05:23:37.393Z"
     }
   ],
   "budgets": [
@@ -37,6 +46,12 @@
       "userId": "730c",
       "category": "food",
       "limit": 1000
+    },
+    {
+      "id": "ec5d",
+      "userId": "730c",
+      "category": "transport",
+      "limit": 600
     }
   ]
 }

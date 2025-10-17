@@ -35,6 +35,13 @@ export const useBudgetStore = defineStore('budget', {
     await this.loadBudgets()
     },
 
+    async updateBudget(updateBudget) {
+      await axios.patch(`http://localhost:3000/budgets/${updateBudget.id}`,{
+        category: updateBudget.category,
+        limit: updateBudget.limit
+      })
+      await this.loadBudgets()
+    },
     async deleteBudget(id) {
       await axios.delete(`http://localhost:3000/budgets/${id}`)
       this.budgets = this.budgets.filter(b => b.id !== id)

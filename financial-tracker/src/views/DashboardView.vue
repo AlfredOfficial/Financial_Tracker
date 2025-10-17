@@ -65,21 +65,33 @@ const logout = () => {
 
 <template>
   <div class="bg-white p-2 sm:p-6 rounded-xl shadow-lg max-w-4xl mx-auto">
-    <header class="mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center space-y-2 sm:space-y-0">
-      <div>
-        <h1 class="text-2xl font-bold text-gray-900">
-          Welcome, {{ userStore.user.username }}
+    <header class="mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center space-y-3 sm:space-y-0">
+    <div>
+      <!-- Added truncate to handle very long usernames gracefully -->
+      <h1 class="text-2xl font-bold text-gray-900 truncate">
+        Welcome, {{ userStore.user.username }}
         </h1>
         <p class="text-sm text-gray-600">Your personal finance dashboard</p>
-      </div>
-      <div class="flex space-x-2">
-        <router-link to="/budget" class="px-4 py-2 bg-purple-600 text-white rounded-lg flex items-center">
-          <i class="fas fa-chart-pie mr-2"></i> Budgets
-        </router-link>
-        <button @click="logout" class="px-4 py-2 bg-gray-800 text-white rounded-lg flex items-center">
-          <i class="fas fa-sign-out-alt mr-2"></i> Log Out
-        </button>
-      </div>
+    </div>
+
+      <!-- Added self-end to align the buttons to the right when stacked on mobile (flex-col) -->
+
+      <!-- Added flex-shrink-0 to ensure the buttons don't shrink horizontally -->
+
+    <div class="flex space-x-2 self-end sm:self-auto flex-shrink-0">
+      <router-link
+      to="/budget"
+      class="px-4 py-2 bg-purple-600 text-white rounded-lg flex items-center whitespace-nowrap"
+      >
+      <i class="fas fa-chart-pie mr-2"></i> Budgets
+      </router-link>
+      <button
+      @click="logout"
+      class="px-4 py-2 bg-gray-800 text-white rounded-lg flex items-center whitespace-nowrap"
+      >
+      <i class="fas fa-sign-out-alt mr-2"></i> Log Out
+      </button>
+    </div>
     </header>
 
     <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6 text-center">
