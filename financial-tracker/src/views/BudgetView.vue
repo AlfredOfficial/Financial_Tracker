@@ -54,17 +54,17 @@ const handleEditSave = async (updatedBudget) => {
 
 <template>
   <div class="p-6 bg-white rounded-xl shadow-md max-w-4xl mx-auto mt-6">
-    <header class="flex justify-between mb-6">
-      <div>
-        <h1 class="text-2xl font-bold text-gray-900">
-          Budget Management
-        </h1>
-        <p class="text-sm text-gray-600">
-          <i class="fas fa-coins mr-1"></i> Set and track your spending limits
-        </p>
+    <header class="flex justify-between items-center mb-6">
+      <div class="truncate">
+          <h1 class="text-2xl font-bold text-gray-900 truncate">
+              Budget Management
+          </h1>
+          <p class="text-sm text-gray-600">
+              <i class="fas fa-coins mr-1"></i> Set and track your spending limits
+          </p>
       </div>
-      <router-link to="/dashboard" class="px-4 py-2 bg-indigo-600 text-white rounded-lg flex items-center">
-        <i class="fas fa-arrow-left mr-2"></i> Back to Dashboard
+      <router-link to="/dashboard" class="px-2 py-1 text-xs bg-indigo-600 text-white rounded-xl flex items-center shadow-md transition duration-200 hover:bg-indigo-700 hover:shadow-lg sm:px-4 sm:py-2 sm:text-base">
+        <i class="fas fa-arrow-left mr-2 sm:mr-3"></i> Back to Dashboard
       </router-link>
     </header>
 
