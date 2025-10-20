@@ -38,6 +38,33 @@
       "category": "transport",
       "userId": "730c",
       "date": "2025-10-12T05:23:37.393Z"
+    },
+    {
+      "id": "c83c",
+      "desc": "plete for week 2",
+      "amount": 150,
+      "type": "expense",
+      "category": "transport",
+      "userId": "730c",
+      "date": "2025-10-20T11:23:57.026Z"
+    },
+    {
+      "id": "486c",
+      "desc": "rice 2 kg",
+      "amount": 250,
+      "type": "expense",
+      "category": "food",
+      "userId": "730c",
+      "date": "2025-10-20T11:24:37.433Z"
+    },
+    {
+      "id": "ed67",
+      "desc": "Daog sa buwang",
+      "amount": 1500,
+      "type": "income",
+      "category": "other",
+      "userId": "730c",
+      "date": "2025-10-20T11:25:44.314Z"
     }
   ],
   "budgets": [
@@ -45,13 +72,19 @@
       "id": "94ec",
       "userId": "730c",
       "category": "food",
-      "limit": 1000
+      "limit": 1500
     },
     {
       "id": "ec5d",
       "userId": "730c",
       "category": "transport",
-      "limit": 600
+      "limit": 650
+    },
+    {
+      "id": "e078",
+      "userId": "730c",
+      "category": "health",
+      "limit": 500
     }
   ]
 }

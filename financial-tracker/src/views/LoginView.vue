@@ -17,7 +17,7 @@ const loginUser = async () => {
 <template>
   <div class="flex items-center justify-center min-h-screen bg-gray-100">
     <div class="bg-white p-6 rounded-xl shadow-md w-full max-w-sm">
-      <h1 class="text-2xl font-bold mb-4 text-center">Finance Tracker Pro</h1>
+      <h1 class="text-2xl font-bold mb-4 text-center">Simple Finance Tracker</h1>
       <form @submit.prevent="loginUser" class="space-y-4">
         <input v-model="username" type="text" placeholder="Username" class="w-full border px-3 py-2 rounded-lg" required>
         <input v-model="password" type="password" placeholder="Password" class="w-full border px-3 py-2 rounded-lg" required>
