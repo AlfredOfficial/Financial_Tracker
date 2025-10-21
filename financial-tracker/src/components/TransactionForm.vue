@@ -17,7 +17,7 @@ const submitForm = () => {
 
 <template>
   <form @submit.prevent="submitForm" class="space-y-3 mb-6 p-4 bg-gray-50 rounded-lg">
-    <h3 class="font-semibold text-lg mb-2">Add New Transaction</h3>
+    <!-- <h3 class="font-semibold text-lg mb-2">Add New Transaction</h3> -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
       <input v-model="desc" type="text" placeholder="Description" required class="w-full px-3 py-2 border rounded-lg">
       <input v-model.number="amount" type="number" placeholder="Amount" required class="w-full px-3 py-2 border rounded-lg">

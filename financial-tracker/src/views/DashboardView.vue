@@ -149,7 +149,10 @@ const logout = () => {
     </div>
 
     <div class="bg-white p-4 rounded-xl shadow-md">
-      <h2 class="text-lg font-bold mb-3">Transactions</h2>
+      <div class="flex justify-between items-center mb-3">
+        <h2 class="text-lg font-bold mb-3">Transactions</h2>
+        <p class="text-sm text-gray-600 mb-2">Total Transactions: {{ filteredTransactions.length }}</p>
+      </div>
       <ul>
         <li v-for="tx in filteredTransactions" :key="tx.id" class="flex justify-between py-2 border-b">
           <div>

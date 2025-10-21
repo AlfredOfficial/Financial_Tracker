@@ -65,6 +65,15 @@
       "category": "other",
       "userId": "730c",
       "date": "2025-10-20T11:25:44.314Z"
+    },
+    {
+      "id": "4a6e",
+      "desc": "neozip 2 pads",
+      "amount": 50,
+      "type": "expense",
+      "category": "health",
+      "userId": "730c",
+      "date": "2025-10-21T13:25:16.451Z"
     }
   ],
   "budgets": [
