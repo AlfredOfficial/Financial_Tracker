@@ -3,12 +3,14 @@ import LoginView from '../views/LoginView.vue'
 import RegisterView from '../views/RegisterView.vue'
 import DashboardView from '../views/DashboardView.vue'
 import BudgetView from '../views/BudgetView.vue'
+import SavingView from '../views/SavingView.vue'
 
 const routes = [
   { path: '/', component: LoginView },
   { path: '/register', component: RegisterView },
   { path: '/dashboard', component: DashboardView },
-  { path: '/budget', component: BudgetView }
+  { path: '/budget', component: BudgetView },
+  { path: '/savings', component: SavingView }
 ]
 
 export default createRouter({

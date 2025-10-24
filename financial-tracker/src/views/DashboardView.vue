@@ -88,6 +88,10 @@ const logout = () => {
       >
       <i class="fas fa-chart-pie mr-2"></i> Budgets
       </router-link>
+
+      <router-link to="/savings" class="px-4 py-2 bg-green-600 text-white rounded-lg flex items-center whitespace-nowrap hover:bg-green-700 transition duration-150">
+        <i class="fas fa-piggy-bank mr-2"></i> Savings
+      </router-link>
       <button
       @click="logout"
       class="px-4 py-2 bg-gray-800 text-white rounded-lg flex items-center whitespace-nowrap"
