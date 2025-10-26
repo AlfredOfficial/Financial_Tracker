@@ -18,7 +18,7 @@ export const useSavingsStore = defineStore('savings', () => {
   // 💡 FIX: Transactions moving money TO savings should be type: 'expense' 
   // to correctly reduce the spendable balance.
   const savingsTransactions = computed(() =>
-    txStore.transactions.filter(t => t.type === 'expense' && (t.category === 'savings' || t.category === 'saving'))
+    txStore.transactions.filter(t => t.type === 'expense' && (t.category === 'savings'))
   )
 
   // 2. Total amount saved
@@ -51,8 +51,7 @@ export const useSavingsStore = defineStore('savings', () => {
     await txStore.addTransaction({
       desc: note || 'Saved to Goal',
       amount: amt,
-      // 💡 FIX: Changed type from 'income' to 'expense'
-      type: 'expense', 
+      type: 'transfer', 
       category: 'savings' 
     })
   }

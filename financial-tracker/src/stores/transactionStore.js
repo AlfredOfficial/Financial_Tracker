@@ -7,7 +7,7 @@ export const useTransactionStore = defineStore('transaction', {
     transactions: [],
     categories: [
       'food', 'transport', 'bills', 'shopping',
-      'entertainment', 'health', 'education', 'other'
+      'entertainment', 'health', 'education', 'savings','other'
     ]
   }),
 
