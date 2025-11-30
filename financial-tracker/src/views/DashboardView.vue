@@ -19,7 +19,7 @@ const typeFilter = ref('all')
 const searchFilter = ref('')
 
 onMounted(() => {
-  if (!userStore.user || !userStore.user.username) {
+  if (!userStore.currentUser || !userStore.currentUser.username) {
     router.push('/')
     return
   };
@@ -71,8 +71,8 @@ const logout = () => {
     <header class="mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center space-y-3 sm:space-y-0">
     <div>
       <!-- Added truncate to handle very long usernames gracefully -->
-      <h1 v-if="userStore.user" class="text-2xl font-bold text-gray-900 truncate">
-        Welcome, {{ userStore.user.username || 'Guest'}}
+      <h1 v-if="userStore.currentUser" class="text-2xl font-bold text-gray-900 truncate">
+        Welcome, {{ userStore.currentUser.username || 'Guest'}}
         </h1>
         <p class="text-sm text-gray-600">Your personal finance dashboard</p>
     </div>

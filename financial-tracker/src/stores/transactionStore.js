@@ -1,64 +1,71 @@
-import { defineStore } from 'pinia'
-import axios from 'axios'
-import { useUserStore } from './userStore'
+import { defineStore } from 'pinia';
+import { ref, computed } from 'vue';
 
-export const useTransactionStore = defineStore('transaction', {
-  state: () => ({
-    transactions: [],
-    categories: [
-      'food', 'transport', 'bills', 'shopping',
-      'entertainment', 'health', 'education', 'savings','other'
-    ]
-  }),
+export const useTransactionStore = defineStore('transaction', () => {
+  // State
+  const transactions = ref([]);
+  const categories = ['food', 'bills', 'salary', 'entertainment', 'travel', 'health', 'misc'];
 
-  actions: {
-    async loadTransactions() {
-      const userStore = useUserStore()
-      if (!userStore.user) return
-      const res = await axios.get(`http://localhost:3000/transactions?userId=${userStore.user.id}`)
-      this.transactions = res.data || []
-    },
-
-    async addTransaction(data) {
-      const userStore = useUserStore()
-      if (!userStore.user) return
-
-      const newTx = {
-        ...data,
-        userId: userStore.user.id,
-        amount: Number(data.amount),
-        date: new Date().toISOString()
-      }
-
-      await axios.post('http://localhost:3000/transactions', newTx)
-      await this.loadTransactions()
-    },
-
-    async deleteTransaction(id) {
-      await axios.delete(`http://localhost:3000/transactions/${id}`)
-      this.transactions = this.transactions.filter(t => t.id !== id)
+  // Get current username to scope localStorage keys
+  const getUsername = () => {
+    const user = JSON.parse(localStorage.getItem('currentUser'));
+    return user ? user.username : 'guest';
+  };
+  
+  // Actions
+  const loadTransactions = () => {
+    const username = getUsername();
+    const storedTransactions = localStorage.getItem(`transactions_${username}`);
+    if (storedTransactions) {
+      transactions.value = JSON.parse(storedTransactions);
     }
-  },
+  };
 
-  getters: {
-    balance: state => {
-      const income = state.transactions
-        .filter(t => t.type === 'income')
-        .reduce((a, b) => a + b.amount, 0)
-      const expense = state.transactions
-        .filter(t => t.type === 'expense')
-        .reduce((a, b) => a + b.amount, 0)
-      return income - expense
-    },
+  const saveTransactions = () => {
+    const username = getUsername();
+    localStorage.setItem(`transactions_${username}`, JSON.stringify(transactions.value));
+  };
 
-    income: state =>
-      state.transactions
-        .filter(t => t.type === 'income')
-        .reduce((a, b) => a + b.amount, 0),
+  const addTransaction = async (transaction) => {
+    const newTransaction = {
+      ...transaction,
+      id: Date.now(), // Simple unique ID
+      date: new Date().toISOString(),
+    };
+    transactions.value.unshift(newTransaction); // Add to the beginning of the list
+    saveTransactions();
+  };
 
-    expense: state =>
-      state.transactions
-        .filter(t => t.type === 'expense')
-        .reduce((a, b) => a + b.amount, 0)
-  }
-})
+  const deleteTransaction = (id) => {
+    transactions.value = transactions.value.filter(tx => tx.id !== id);
+    saveTransactions();
+  };
+
+  // Getters (Computed properties)
+  const income = computed(() => {
+    return transactions.value
+      .filter(tx => tx.type === 'income')
+      .reduce((sum, tx) => sum + tx.amount, 0);
+  });
+
+  const expense = computed(() => {
+    return transactions.value
+      .filter(tx => tx.type === 'expense')
+      .reduce((sum, tx) => sum + tx.amount, 0);
+  });
+
+  const balance = computed(() => {
+    return income.value - expense.value;
+  });
+
+  return {
+    transactions,
+    categories,
+    income,
+    expense,
+    balance,
+    loadTransactions,
+    addTransaction,
+    deleteTransaction,
+  };
+});

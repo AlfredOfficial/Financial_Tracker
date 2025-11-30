@@ -1,65 +1,65 @@
-import { defineStore } from 'pinia'
-import axios from 'axios'
+import { defineStore } from 'pinia';
+import { ref } from 'vue';
 
-export const useUserStore = defineStore('user', {
-  state: () => ({
-    user: JSON.parse(localStorage.getItem('user')) || null,
-    error: ''
-  }),
+export const useUserStore = defineStore('user', () => {
+  // State
+  const currentUser = ref(JSON.parse(localStorage.getItem('currentUser')) || null);
+  const error = ref(null);
 
-  actions: {
-    async register(username, password) {
-      try {
-        if (!username || !password) {
-          this.error = 'Username and password required'
-          return false
-        }
+  // Actions
+  const register = async (username, password) => {
+    error.value = null;
 
-        const res = await axios.get(`http://localhost:3000/users?username=${username}`)
-        if (res.data.length > 0) {
-          this.error = 'Username already exists'
-          return false
-        }
+    // 1. Get existing users from localStorage
+    const users = JSON.parse(localStorage.getItem('users')) || [];
 
-        const newUser = { username, password }
-        const result = await axios.post('http://localhost:3000/users', newUser)
-        if (result.status === 201) {
-          this.error = ''
-          return true
-        }
-      } catch {
-        this.error = 'Registration failed'
-        return false
-      }
-    },
-
-    async login(username, password) {
-      try {
-        if (!username || !password) {
-          this.error = 'Username and password required'
-          return false
-        }
-
-        const res = await axios.get(`http://localhost:3000/users?username=${username}&password=${password}`)
-        if (res.data.length === 1) {
-          this.user = res.data[0]
-          localStorage.setItem('user', JSON.stringify(this.user))
-          this.error = ''
-          return true
-        }
-
-        this.error = 'Invalid credentials'
-        return false
-      } catch {
-        this.error = 'Login failed'
-        return false
-      }
-    },
-
-    logout() {
-      this.user = null
-      localStorage.removeItem('user')
-      this.error = ''
+    // 2. Check if the user already exists
+    if (users.find(user => user.username === username)) {
+      error.value = 'Username already exists.';
+      return false;
     }
-  }
-})
+
+    // 3. Add the new user
+    users.push({ username, password });
+    localStorage.setItem('users', JSON.stringify(users));
+
+    // 4. Log the new user in automatically after registration
+    currentUser.value = { username };
+    localStorage.setItem('currentUser', JSON.stringify({ username }));
+    
+    return true;
+  };
+
+  const login = async (username, password) => {
+    error.value = null;
+
+    // 1. Get existing users from localStorage
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+    
+    // 2. Find the user and verify credentials
+    const foundUser = users.find(user => user.username === username && user.password === password);
+
+    if (foundUser) {
+      currentUser.value = { username };
+      localStorage.setItem('currentUser', JSON.stringify({ username }));
+      return true;
+    } else {
+      error.value = 'Invalid username or password.';
+      return false;
+    }
+  };
+
+  const logout = () => {
+    currentUser.value = null;
+    localStorage.removeItem('currentUser');
+    // Note: Registered users remain in localStorage ('users')
+  };
+
+  return {
+    currentUser,
+    error,
+    register,
+    login,
+    logout,
+  };
+});

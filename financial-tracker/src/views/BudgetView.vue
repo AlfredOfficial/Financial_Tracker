@@ -3,11 +3,11 @@ import { ref, onMounted } from 'vue'
 import { useTransactionStore } from '../stores/transactionStore'
 import { useBudgetStore } from '../stores/budgetStore'
 import EditModal from '../components/EditModal.vue'
-import { useSavingsStore } from '../stores/savingsStore'
+// useSavingsStore import removed
 
 const txStore = useTransactionStore()
 const budgetStore = useBudgetStore()
-const savingsStore = useSavingsStore()
+// const savingsStore = useSavingsStore() // Removed
 
 const category = ref('')
 const limit = ref('')
@@ -70,7 +70,8 @@ const handleEditSave = async (updatedBudget) => {
       </router-link>
     </header>
 
-  <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+    <!-- Adjusted grid to 3 columns since savings was removed -->
+  <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
     
     <div class="p-4 bg-blue-50 rounded-lg shadow-sm">
       <p class="text-sm text-blue-700 font-medium">Total Budget</p>
@@ -92,13 +93,9 @@ const handleEditSave = async (updatedBudget) => {
         ₱{{ budgetStore.overspentBudget.toFixed(2) }}
       </p>
     </div>
+    
+    <!-- Savings card removed -->
 
-    <div class="p-4 bg-purple-50 rounded-lg shadow-sm">
-      <p class="text-sm text-purple-700 font-medium">Total Savings</p>
-      <p id="totalSavings" class="text-2xl font-bold text-purple-800 mt-1">
-        ₱{{ savingsStore.totalSavings.toFixed(2) }}
-      </p>
-    </div>
   </div>
 
     <div class="bg-gray-50 p-4 rounded-xl mb-6">
